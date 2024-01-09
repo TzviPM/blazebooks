@@ -6,6 +6,7 @@
     "build": "next build",
     "start": "next start",
     "test": "vitest",
+    "type-check": "tsc --noEmit",
     "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check ."

@@ -1,5 +1,7 @@
 node_modules
 .next
+tsconfig.tsbuildinfo
+
 ## Panda
 styled-system
 styled-system-studio

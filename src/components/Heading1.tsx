@@ -1,3 +1,4 @@
+import {PropsWithChildren} from 'react';
 import {styled} from '../../styled-system/jsx';
 
 export function Heading1({children}: PropsWithChildren<{}>) {
