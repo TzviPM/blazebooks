@@ -1,13 +1,46 @@
 {
   "name": "blazebooks",
-  "packageManager": "yarn@3.6.1",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "vitest",
+    "lint": "next lint",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "@testing-library/react": "^14.1.2",
+    "@types/eslint": "^8",
+    "@types/node": "20.10.8",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
     "@tzvipm.dev/prettier-config": "^0.0.2",
-    "prettier": "^3.1.1"
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "eslint-config-prettier": "^9.1.0",
+    "jsdom": "^23.2.0",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.1.3"
   },
-  "prettier": "@tzvipm.dev/prettier-config"
+  "prettier": "@tzvipm.dev/prettier-config",
+  "dependencies": {
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "description": "BlazeBooks is a bookstore app to showcase front-end development skills as part of the BlazeSoft interview process.",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TzviPM/blazebooks.git"
+  },
+  "author": "Tzvi Melamed <tzvi@melamed.biz>",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/TzviPM/blazebooks/issues"
+  },
+  "homepage": "https://github.com/TzviPM/blazebooks#readme"
 }
