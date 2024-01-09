@@ -1,6 +1,7 @@
 {
   "name": "blazebooks",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -10,6 +11,7 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.26.1",
     "@testing-library/react": "^14.1.2",
     "@types/eslint": "^8",
     "@types/node": "20.10.8",
