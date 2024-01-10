@@ -40,6 +40,9 @@ export const DeleteBookButton = ({id}: {id?: number}) => {
           <Button
             variant="destructive"
             onClick={() => {
+              if (id == null) {
+                return;
+              }
               dispatch(deleteBook(id));
             }}
           >
