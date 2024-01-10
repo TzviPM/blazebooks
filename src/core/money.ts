@@ -29,6 +29,10 @@ export class Money {
     return this.raw;
   }
 
+  isNegative(): boolean {
+    return this.raw < 0;
+  }
+
   get dollars(): number {
     return this.raw / 100;
   }
