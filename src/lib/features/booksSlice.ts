@@ -32,8 +32,8 @@ export const booksSlice = createSlice({
         changes: action.payload,
       });
     },
-    deleteBook: (state, action: PayloadAction<Book>) => {
-      booksAdapter.removeOne(state, action.payload.id!);
+    deleteBook: (state, action: PayloadAction<number>) => {
+      booksAdapter.removeOne(state, action.payload);
     },
   },
 });
