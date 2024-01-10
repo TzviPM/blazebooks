@@ -50,4 +50,21 @@ describe('Money', () => {
       expect(money.dollars).toBe(1);
     });
   });
+
+  describe('isNegative', () => {
+    test('returns true when negative', () => {
+      const money = Money.create(-1_00);
+      expect(money.isNegative()).toBe(true);
+    });
+
+    test('returns false when positive', () => {
+      const money = Money.create(1_00);
+      expect(money.isNegative()).toBe(false);
+    });
+
+    test('returns false when zero', () => {
+      const money = Money.create(0);
+      expect(money.isNegative()).toBe(false);
+    });
+  });
 });
