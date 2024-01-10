@@ -1,32 +1,19 @@
 'use client';
 
 import {BookForm} from './BookForm';
-import {updateBook, useBook} from '../lib/features/booksSlice';
+import {createBook} from '../lib/features/booksSlice';
 import {useAppDispatch} from '../lib/hooks';
 import {useRouter} from 'next/navigation';
 
-export function BookEditForm({
-  id,
-  dialog,
-}: {
-  id: number;
-  dialog?: boolean;
-}) {
-  const book = useBook(id);
+export function BookCreateForm({dialog}: {dialog?: boolean}) {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   return (
     <BookForm
       dialog={dialog}
-      initialData={book?.toRaw()}
       onSubmit={book => {
-        dispatch(
-          updateBook({
-            ...book.toRaw(),
-            id: Number(id),
-          }),
-        );
+        dispatch(createBook(book.toRaw()));
         if (dialog) {
           router.back();
         } else {

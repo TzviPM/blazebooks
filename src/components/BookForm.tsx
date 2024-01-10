@@ -1,7 +1,7 @@
 'use client';
 
 import React, {Fragment} from 'react';
-import {useForm} from 'react-hook-form';
+import {SubmitHandler, UseFormSetError, useForm} from 'react-hook-form';
 import {z} from 'zod';
 import {zodResolver} from '@hookform/resolvers/zod';
 
@@ -17,6 +17,7 @@ import {
   FormLabel,
   FormMessage,
 } from './Form';
+import {Book, BookError} from '../core/books';
 
 const bookSchema = z.object({
   name: z.string(),
@@ -25,15 +26,15 @@ const bookSchema = z.object({
   description: z.string(),
 });
 
-type FormData = z.infer<typeof bookSchema>;
+export type FormData = z.infer<typeof bookSchema>;
 
 export interface BookFormProps {
-  // onSubmit(data: FormData): void;
+  onSubmit(book: Book, setError: UseFormSetError<FormData>): unknown;
   dialog?: boolean;
   initialData?: FormData;
 }
 
-export function BookForm({dialog, initialData}: BookFormProps) {
+export function BookForm({dialog, initialData, onSubmit}: BookFormProps) {
   const form = useForm<FormData>({
     resolver: zodResolver(bookSchema),
     defaultValues: initialData ?? {
@@ -44,15 +45,28 @@ export function BookForm({dialog, initialData}: BookFormProps) {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
-  };
-
   const ButtonContainer = dialog ? DialogFooter : Fragment;
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form
+        onSubmit={form.handleSubmit(data => {
+          let book!: Book;
+          try {
+            book = Book.create(data);
+          } catch (e: unknown) {
+            if (e instanceof BookError) {
+              form.setError(
+                e.field == null || e.field === 'id' ? 'root' : e.field,
+                {message: e.message},
+              );
+              return;
+            }
+            throw e;
+          }
+          onSubmit(book, form.setError);
+        })}
+      >
         <FormField
           control={form.control}
           name="name"

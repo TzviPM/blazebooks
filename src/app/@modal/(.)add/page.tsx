@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from '../../../components/Dialog';
-import {BookForm} from '../../../components/BookForm';
+import {BookCreateForm} from '../../../components/BookCreateForm';
 
 export default function AddBookModal() {
   const router = useRouter();
@@ -30,7 +30,7 @@ export default function AddBookModal() {
             Add a new book to the store. Click save when done.
           </DialogDescription>
         </DialogHeader>
-        <BookForm dialog />
+        <BookCreateForm dialog />
       </DialogContent>
     </Dialog>
   );
