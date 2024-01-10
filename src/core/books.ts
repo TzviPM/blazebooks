@@ -1,4 +1,4 @@
-import {Money, RawMoney} from './money';
+import {Money, MoneyError, RawMoney} from './money';
 
 export interface RawBook {
   id?: number;
@@ -9,7 +9,10 @@ export interface RawBook {
 }
 
 export class BookError extends Error {
-  constructor(message: string) {
+  constructor(
+    message: string,
+    public readonly field?: keyof RawBook,
+  ) {
     super(message);
     this.name = 'BookError';
   }
@@ -67,18 +70,29 @@ export class Book {
   }
 
   static create(raw: RawBook): Book {
-    const price = Money.create(raw.price);
+    let price!: Money;
+    try {
+      price = Money.create(raw.price);
+    } catch (e: unknown) {
+      if (e instanceof MoneyError) {
+        throw new BookError(e.message, 'price');
+      } else {
+        throw e;
+      }
+    }
+
     if (price.isNegative()) {
-      throw new BookError('Price cannot be negative');
+      throw new BookError('Price cannot be negative', 'price');
     }
     if (raw.name.length < 1) {
-      throw new BookError('Name cannot be blank');
+      throw new BookError('Name cannot be blank', 'name');
     }
     return new Book(raw.id, raw.name, price, raw.category, raw.description);
   }
 
   toRaw(): RawBook {
     return {
+      id: this.id,
       name: this.name,
       price: this.price.toRaw(),
       category: this.category,

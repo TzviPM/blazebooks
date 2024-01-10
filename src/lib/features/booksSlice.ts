@@ -7,7 +7,6 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 import {useAppSelector} from '../hooks';
 import {Book, RawBook} from '../../core/books';
 import {RootState} from '../store';
-import {create} from 'domain';
 
 const booksAdapter = createEntityAdapter<RawBook, number>({
   selectId: book => book.id ?? -1,
@@ -20,13 +19,17 @@ export const booksSlice = createSlice({
     setInitialBooks: (state, action: PayloadAction<RawBook[]>) => {
       booksAdapter.setAll(state, action.payload);
     },
-    createBook: (state, action: PayloadAction<Book>) => {
-      booksAdapter.addOne(state, action.payload.toRaw());
+    createBook: (state, action: PayloadAction<RawBook>) => {
+      const maxBook = state.ids.reduce((a, b) => Math.max(a, b), 0);
+      booksAdapter.addOne(state, {
+        ...action.payload,
+        id: maxBook + 1,
+      });
     },
-    updateBook: (state, action: PayloadAction<Book>) => {
+    updateBook: (state, action: PayloadAction<RawBook>) => {
       booksAdapter.updateOne(state, {
         id: action.payload.id!,
-        changes: action.payload.toRaw(),
+        changes: action.payload,
       });
     },
     deleteBook: (state, action: PayloadAction<Book>) => {

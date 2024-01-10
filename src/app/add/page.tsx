@@ -1,7 +1,6 @@
-import {BookForm} from './../../components/BookForm';
-
-import {Heading1} from '../../components/Heading1';
 import {Container, Flex} from '../../../styled-system/jsx';
+import {Heading1} from '../../components/Heading1';
+import {BookCreateForm} from '../../components/BookCreateForm';
 
 export default function Page() {
   return (
@@ -9,7 +8,7 @@ export default function Page() {
       <Flex justify="space-between">
         <Heading1>Add a Book</Heading1>
       </Flex>
-      <BookForm />
+      <BookCreateForm />
     </Container>
   );
 }
