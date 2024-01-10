@@ -33,7 +33,9 @@
   },
   "prettier": "@tzvipm.dev/prettier-config",
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.5",
     "@reduxjs/toolkit": "^2.0.1",
+    "lucide-react": "^0.308.0",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
