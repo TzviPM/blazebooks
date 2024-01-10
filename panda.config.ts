@@ -12,7 +12,53 @@ export default defineConfig({
 
   // Useful for theme customization
   theme: {
-    extend: {},
+    extend: {
+      tokens: {
+        zIndex: {
+          modal: {
+            value: 50,
+          },
+        },
+      },
+      keyframes: {
+        fadeIn: {
+          from: {
+            opacity: 0,
+          },
+          to: {
+            opacity: 1,
+          },
+        },
+        fadeOut: {
+          from: {
+            opacity: 1,
+          },
+          to: {
+            opacity: 0,
+          },
+        },
+        modalIn: {
+          from: {
+            opacity: 0,
+            transform: 'scale(0.95) translate(-50%, -48%)',
+          },
+          to: {
+            opacity: 1,
+            transform: 'scale(1) translate(0)',
+          },
+        },
+        modalOut: {
+          from: {
+            opacity: 1,
+            transform: 'scale(1) translate(0)',
+          },
+          to: {
+            opacity: 0,
+            transform: 'scale(0.95) translate(-50%, -48%)',
+          },
+        },
+      },
+    },
   },
 
   strictTokens: true,

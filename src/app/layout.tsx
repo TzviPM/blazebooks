@@ -1,6 +1,7 @@
+import './index.css';
+
 import {StoreProvider} from './StoreProvider';
 import {loadBooks} from './data/books';
-import './index.css';
 
 export const metadata = {
   title: 'BlazeBooks',
@@ -10,15 +11,20 @@ export const metadata = {
 
 export default async function RootLayout({
   children,
+  modal,
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   const books = await loadBooks();
 
   return (
     <html lang="en">
       <body>
-        <StoreProvider booksData={books}>{children}</StoreProvider>
+        <StoreProvider booksData={books}>
+          {children}
+          {modal}
+        </StoreProvider>
       </body>
     </html>
   );
