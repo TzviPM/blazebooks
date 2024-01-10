@@ -34,7 +34,7 @@ export class Money {
   }
 
   get dollars(): number {
-    return this.raw / 100;
+    return Math.floor(this.raw / 100);
   }
 
   get cents(): number {
