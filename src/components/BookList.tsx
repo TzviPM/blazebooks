@@ -9,7 +9,13 @@ export function BookList() {
   return (
     <VStack>
       {bookList.map(book => (
-        <BookCard key={book.name} {...book} />
+        <BookCard
+          key={book.id}
+          id={book.id}
+          name={book.name}
+          category={book.category}
+          price={book.price}
+        />
       ))}
     </VStack>
   );

@@ -8,10 +8,11 @@ export const BookCard = ({
   name,
   category,
   price,
-}: Pick<Book, 'name' | 'category' | 'price'>) => {
+  id,
+}: Pick<Book, 'name' | 'category' | 'price' | 'id'>) => {
   return (
     <Link
-      href={`${name}/edit`}
+      href={`${id}/edit`}
       className={grid({
         columns: 3,
         gap: '6',

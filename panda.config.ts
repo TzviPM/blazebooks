@@ -59,6 +59,43 @@ export default defineConfig({
         },
       },
     },
+    semanticTokens: {
+      colors: {
+        primary: {
+          DEFAULT: {
+            value: '{colors.blue.500}',
+          },
+          foreground: {
+            value: '{colors.slate.100}',
+          },
+        },
+        destructive: {
+          DEFAULT: {
+            value: '{colors.red.500}',
+          },
+          foreground: {
+            value: '{colors.slate.100}',
+          },
+        },
+        muted: {
+          DEFAULT: {
+            value: '{colors.slate.100}',
+          },
+          foreground: {
+            value: '{colors.slate.700}',
+          },
+        },
+        background: {
+          value: '{colors.slate.100}',
+        },
+        foreground: {
+          value: '{colors.slate.900}',
+        },
+        ring: {
+          value: '{colors.teal.600}',
+        },
+      },
+    },
   },
 
   strictTokens: true,
